@@ -2,11 +2,20 @@
 % Please edit documentation in R/ns.R
 \name{auth}
 \alias{auth}
-\title{Title}
+\title{Retrieves NS API user credentials.}
 \usage{
 auth()
 }
+\value{
+a \code{httr::authenticate} object to be used as HTTP header for
+  authentication
+}
 \description{
-Title
+The user's API credentials are retrieved from the \strong{\code{NS_ID}} and
+\strong{\code{NS_PW}} keys in the local .Renviron file. An error will occur
+if either one or both of the keys are missing.
+}
+\seealso{
+\code{\link[httr]{authenticate}}
 }
 

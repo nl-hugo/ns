@@ -15,12 +15,16 @@ ns(path, query = NULL)
 \item{path}{}
 }
 \description{
-This is a description
+NS requires users to register to access the API. Upon registration,
+https://www.ns.nl/ews-aanvraagformulier/?0
+   This is a description
 
 Title
 }
 \seealso{
-http://www.ns.nl/en/travel-information/ns-api
+\link{http://www.ns.nl/en/travel-information/ns-api}
+
+The URL to the webservices API
 }
 \keyword{datasets}
 

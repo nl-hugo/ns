@@ -2,8 +2,6 @@
 
 S3method(print,ns)
 export(BASE_URL)
-export(auth)
-export(departures)
-export(makepath)
 export(ns)
-export(stations)
+export(ns_departures)
+export(ns_stations)

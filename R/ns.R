@@ -2,47 +2,61 @@
 #' @export
 #'
 #' @title
-#' Connect to NS API and return information about planned and current time tables.
+#'    Connect to NS API and return information about planned and current time tables.
 #'
 #' @description
-#' This is a description
+#' NS requires users to register to access the API. Upon registration,
+#' https://www.ns.nl/ews-aanvraagformulier/?0
+#'    This is a description
 #'
 #'
 #' @seealso
-#' http://www.ns.nl/en/travel-information/ns-api
+#'    \link{http://www.ns.nl/en/travel-information/ns-api}
 #'
 
+#' The URL to the webservices API
 BASE_URL <- "https://webservices.ns.nl"
+
+#' The API path
 API_URL <- "ns-api"
 
+#' The user agent
 UA <- user_agent("http://github.com/nl-hugo/ns")
 
-#' Title
+
+#' Retrieves NS API user credentials.
 #'
-#' @return
-#' @export
+#' The user's API credentials are retrieved from the \strong{\code{NS_ID}} and
+#' \strong{\code{NS_PW}} keys in the local .Renviron file. An error will occur
+#' if either one or both of the keys are missing.
 #'
-#' @examples
+#' @return a \code{httr::authenticate} object to be used as HTTP header for
+#'   authentication
+#'
+#' @seealso
+#'   \code{\link[httr]{authenticate}}
+#'
 auth <- function() {
 
   id <- Sys.getenv("NS_ID")
   pw <- Sys.getenv("NS_PW")
   if (identical(id, "") || identical(id, "")) {
-    stop("Please set env var NS_ID and NS_PW to your personal NS API user id and password",
+    stop("Please set env var NS_ID and NS_PW to your personal NS API user id
+         and password",
          call. = FALSE)
   }
-  authenticate(id, pw, type = "basic")
+  httr::authenticate(id, pw, type = "basic")
 }
 
 
-#' Title
+#' Returns the path to the API URL for the requested service.
 #'
-#' @param service
+#' @param service The name of the service
 #'
-#' @return
-#' @export
+#' @return The path to the API service.
 #'
 #' @examples
+#' makepath("stations-v2")
 makepath <- function(service) {
 
   paste(API_URL, service, sep = "-")

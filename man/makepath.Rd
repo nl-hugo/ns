@@ -2,14 +2,20 @@
 % Please edit documentation in R/ns.R
 \name{makepath}
 \alias{makepath}
-\title{Title}
+\title{Returns the path to the API URL for the requested service.}
 \usage{
 makepath(service)
 }
 \arguments{
-\item{service}{}
+\item{service}{The name of the service}
+}
+\value{
+The path to the API service.
 }
 \description{
-Title
+Returns the path to the API URL for the requested service.
+}
+\examples{
+makepath("stations-v2")
 }
 
