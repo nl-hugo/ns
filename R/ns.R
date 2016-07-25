@@ -35,6 +35,19 @@ auth <- function() {
 }
 
 
+#' Title
+#'
+#' @param service
+#'
+#' @return
+#' @export
+#'
+#' @examples
+makepath <- function(service) {
+
+  paste(API_URL, service, sep = "-")
+}
+
 
 #' Title
 #'
@@ -91,6 +104,7 @@ ns <- function(path, query = NULL) {
     class = "ns"
   )
 }
+
 
 #' Title
 #'
