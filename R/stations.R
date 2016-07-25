@@ -12,6 +12,6 @@ path <- paste(API_URL, SERVICE_STATIONS, sep = "-")
 # http://www.ns.nl/en/travel-information/ns-api/documentation-station-list.html
 requestStationList <- function() {
 
-  ns_api(path)
+  ns(path)
 
 }

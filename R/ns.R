@@ -44,7 +44,7 @@ auth <- function() {
 #' @export
 #'
 #' @examples
-ns_api <- function(path, query = NULL) {
+ns <- function(path, query = NULL) {
 
   # build the request URL
   url <- httr::modify_url(BASE_URL, path = path, query = query)
@@ -88,7 +88,7 @@ ns_api <- function(path, query = NULL) {
       path = path,
       response = resp
     ),
-    class = "ns_api"
+    class = "ns"
   )
 }
 
@@ -101,7 +101,7 @@ ns_api <- function(path, query = NULL) {
 #' @export
 #'
 #' @examples
-print.ns_api <- function(x, ...) {
+print.ns <- function(x, ...) {
 
   cat("<NS ", x$path, ">\n", sep = "")
   str(x$content)

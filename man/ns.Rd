@@ -3,13 +3,21 @@
 \docType{data}
 \name{BASE_URL}
 \alias{BASE_URL}
+\alias{ns}
 \title{Connect to NS API and return information about planned and current time tables.}
 \format{An object of class \code{character} of length 1.}
 \usage{
 BASE_URL
+
+ns(path, query = NULL)
+}
+\arguments{
+\item{path}{}
 }
 \description{
 This is a description
+
+Title
 }
 \seealso{
 http://www.ns.nl/en/travel-information/ns-api

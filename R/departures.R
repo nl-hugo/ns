@@ -15,5 +15,5 @@ path <- paste("ns-api", SERVICE_AVT, sep = "-")
 #' @examples
 requestDepartureTimes <- function(id) {
   query <- list(station=id)
-  ns_api(path, query)
+  ns(path, query)
 }
