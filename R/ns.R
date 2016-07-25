@@ -49,7 +49,6 @@ ns_api <- function(path, query = NULL) {
   # build the request URL
   url <- httr::modify_url(BASE_URL, path = path, query = query)
 
-  sprintf(url)
   # make request
   resp <- httr::GET(url,
               auth(),
