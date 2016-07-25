@@ -1,6 +1,6 @@
 Package: ns
 Type: Package
-Title: NS API via R
+Title: An implementation of the NS API in R
 Version: 0.1.0
 Date: 2016-07-25
 Author: Hugo Janssen <gh@hugojanssen.nl>
@@ -12,6 +12,7 @@ Depends:
     httr (>= 1.2.1),
     XML
 License: MIT + file LICENSE
-URL: https://github.com/nl-hugo/ns
+URL: https://github.com/nl-hugo/ns,
+    http://www.ns.nl/en/travel-information/ns-api
 LazyData: TRUE
 RoxygenNote: 5.0.1
