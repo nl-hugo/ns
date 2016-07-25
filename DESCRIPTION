@@ -11,6 +11,8 @@ Depends:
     R (>= 3.2.5),
     httr (>= 1.2.1),
     XML
+Suggests:
+    testthat
 License: MIT + file LICENSE
 URL: https://github.com/nl-hugo/ns,
     http://www.ns.nl/en/travel-information/ns-api
