@@ -21,30 +21,47 @@ ns_departures <- function(id) {
   # turn xml into a dataframe
   df <- xmlToDataFrame(res$content)[c("RitNummer",
                                       "VertrekTijd",
-#                                      "VertrekVertraging",
-#                                      "VertrekVertragingTekst",
                                       "EindBestemming",
                                       "TreinSoort",
-#                                      "RouteTekst",
                                       "Vervoerder",
                                       "VertrekSpoor"
-#                                      "ReisTip",
-#                                      "Comments"
                                       )]
 
-  # TODO: gewijzigd vertrekspoor?
-  # TODO: optional elements
+  # append optional elements
+  elt <- c("VertrekVertraging",
+           "VertrekVertragingTekst",
+           "RouteTekst",
+           "ReisTip",
+           "Comments"
+           )
+  df <- cbind(df, sapply(elt, function(x) {
+    apply(df, 1, function(y) {
+      v <- getNodeSet(res$content, paste0("//VertrekkendeTrein[RitNummer=\"",
+                                          y["RitNummer"],
+                                          "\"]/",
+                                          x
+                                          ))
+      if (length(v) == 1) {
+        v <- xmlValue(v[[1]])
+      }
+      v
+    })
+  }))
 
-  # flatten the full and abbreviated station names
-  #nameattr <- c("Kort", "Middel", "Lang")
-  #df <- cbind(df, sapply(nameattr, function(x) {
-  #  apply(df, 1, function(y) {
-  #    xmlValue(getNodeSet(res$content, paste0("//Station[Code=\"", y["Code"], "\"]/Namen/", x))[[1]])
-  #  })
-  #}))
+  # append changed platform indicator
+  df <- cbind(df, apply(df, 1, function(x) {
+      v <- getNodeSet(res$content, paste0("//VertrekkendeTrein[RitNummer=\"",
+                                          x["RitNummer"],
+                                          "\"]/VertrekSpoor"
+                                          ))
+      sapply(v, function(el) xmlGetAttr(el, "wijziging"))
+    })
+  )
+  names(df)[12] <- "GewijzigdVertrekSpoor"
 
   # correct column casing
   names(df) <- tolower(names(df))
 
-  df
+  # return columns in the appropriate order
+  df[, c(1, 2, 7, 8, 3, 4, 9, 5, 6, 12, 10, 11)]
 }

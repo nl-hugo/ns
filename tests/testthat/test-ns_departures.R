@@ -8,11 +8,12 @@ test_that("it returns a dataframe", {
 
 test_that("it has the correct dimensions", {
   expect_true(dim(res)[1] >= 10)              # 10 or more departures
-  expect_equal(dim(res)[2], 6)                # 6 columns
+  expect_equal(dim(res)[2], 12)               # 12 columns
 })
 
 test_that("it contains different destinations", {
-  expect_true(length(unique(res$eindbestemming)) > 1)  # more than 1 different destinations
+  expect_true(length(unique(res$eindbestemming)) > 1) # more than 1 different
+                                                      # destinations
 })
 
 test_that("the next train has not left yet", {
