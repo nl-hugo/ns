@@ -11,6 +11,19 @@ test_that("it has the correct dimensions", {
   expect_equal(dim(res)[2], 9)                # 9 columns
 })
 
+test_that("it has the correct columns", {
+  expect_equal(names(res), c("code",
+                             "type",
+                             "land",
+                             "uiccode",
+                             "lat",
+                             "lon",
+                             "kort",
+                             "middel",
+                             "lang"
+                             ))
+})
+
 test_that("it contains multiple countries", {
   expect_true(length(unique(res$land)) > 10)  # more than 10 different countries
 })
