@@ -7,7 +7,7 @@
 ns_departures(id)
 }
 \arguments{
-\item{id}{}
+\item{id}{The code (abbreviation) or short name or medium-length name or full name or synonym of the station's name}
 }
 \description{
 Title

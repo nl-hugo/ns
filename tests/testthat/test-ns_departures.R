@@ -11,6 +11,22 @@ test_that("it has the correct dimensions", {
   expect_equal(dim(res)[2], 12)               # 12 columns
 })
 
+test_that("it has the correct columns", {
+  expect_equal(names(res), c("ritnummer",
+                             "vertrektijd",
+                             "vertrekvertraging",
+                             "vertrekvertragingtekst",
+                             "eindbestemming",
+                             "treinsoort",
+                             "routetekst",
+                             "vervoerder",
+                             "vertrekspoor",
+                             "gewijzigdvertrekspoor",
+                             "reistip",
+                             "comments"
+                             ))
+})
+
 test_that("it contains different destinations", {
   expect_true(length(unique(res$eindbestemming)) > 1) # more than 1 different
                                                       # destinations
