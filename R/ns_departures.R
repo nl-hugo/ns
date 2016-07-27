@@ -18,6 +18,18 @@ ns_departures <- function(id) {
   query <- list(station = id)
   res <- ns(path, query)
 
+  # stop on error message
+  err <- getNodeSet(res$content, "//error")
+  if (length(err) > 0) {
+    stop(
+      sprintf(
+        "NS API request failed\n%s",
+        xmlValue(getNodeSet(err[[1]], "//message/text()")[[1]])
+      ),
+      call. = FALSE
+    )
+  }
+
   # turn xml into a dataframe
   df <- xmlToDataFrame(res$content)[c("RitNummer",
                                       "VertrekTijd",
