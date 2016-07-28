@@ -32,20 +32,24 @@ ns_stations <- function() {
 
   # get the list of stations
   res <- ns(makepath("stations-v2"))
+  df <- res$content
 
-  # turn xml into a dataframe
-  df <- xmlToDataFrame(res$content)[c("Code", "Type", "Land", "UICCode", "Lat", "Lon")]
+  # check if the api returned content
+  if (!is.null(df)) {
 
-  # flatten the full and abbreviated station names
-  nameattr <- c("Kort", "Middel", "Lang")
-  df <- cbind(df, sapply(nameattr, function(x) {
-    apply(df, 1, function(y) {
-      xmlValue(getNodeSet(res$content, paste0("//Station[Code=\"", y["Code"], "\"]/Namen/", x))[[1]])
-    })
-  }))
+    # turn xml into a dataframe
+    df <- xmlToDataFrame(res$content)[c("Code", "Type", "Land", "UICCode", "Lat", "Lon")]
 
-  # correct column casing
-  names(df) <- tolower(names(df))
+    # flatten the full and abbreviated station names
+    nameattr <- c("Kort", "Middel", "Lang")
+    df <- cbind(df, sapply(nameattr, function(x) {
+      apply(df, 1, function(y) {
+        xmlValue(getNodeSet(res$content, paste0("//Station[Code=\"", y["Code"], "\"]/Namen/", x))[[1]])
+      })
+    }))
 
+    # correct column casing
+    names(df) <- tolower(names(df))
+  }
   df
 }

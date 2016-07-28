@@ -122,13 +122,15 @@ ns <- function(path, query = NULL) {
   }
 
   # return S3 object
-  structure(
-    list(
-      content = parsed,
-      path = path,
-      response = resp
-    ),
-    class = "ns"
+  invisible(
+    structure(
+      list(
+        content = parsed,
+        path = path,
+        response = resp
+      ),
+      class = "ns"
+    )
   )
 }
 

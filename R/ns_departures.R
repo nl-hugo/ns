@@ -19,8 +19,9 @@ ns_departures <- function(id) {
   res <- ns(path, query)
   df <- res$content
 
-  # stop on error message
+  # check if the api returned content
   if (!is.null(df)) {
+
     # turn xml into a dataframe
     df <- xmlToDataFrame(res$content)[c("RitNummer",
                                         "VertrekTijd",
