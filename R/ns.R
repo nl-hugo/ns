@@ -108,6 +108,19 @@ ns <- function(path, query = NULL) {
     )
   }
 
+  # stop on error message
+  err <- getNodeSet(parsed, "//error")
+  if (length(err) > 0) {
+    parsed = NULL
+    warning(
+      sprintf(
+        "NS API returned an error message\n%s",
+        xmlValue(getNodeSet(err[[1]], "//message/text()")[[1]])
+      ),
+      call. = FALSE
+    )
+  }
+
   # return S3 object
   structure(
     list(
