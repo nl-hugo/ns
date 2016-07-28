@@ -37,3 +37,8 @@ test_that("the next train has not left yet", {
   #expect_equal(as.character(ut$code), "UT")               # code
   expect_equal(1,1)
 })
+
+test_that("an invalid station does not return results", {
+  res <- expect_warning(ns_departures("idonotexist"), regexp = ".*No station found.*")
+  expect_null(res)
+})
